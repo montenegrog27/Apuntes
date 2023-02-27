@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Closures
 ``` javascript
 function saludar (saludo) {
@@ -13,4 +12,3 @@ saludar('toni') // Hola Toni
 
 =======
 
->>>>>>> b0f48f7f5279590889738666225cfddeb3596528
