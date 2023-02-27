@@ -1,4 +1,4 @@
-# Lo mas importante del M1
+# Repaso M1
 ## Clase con Mary 27/02
 ### 1. Que es bracket notation y dot notation?. A que tipos de objetos se les puede aplicar?
 
