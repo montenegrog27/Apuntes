@@ -28,7 +28,7 @@
 - Por que todo es un metodo creado en el prototipo de un objeto global. siempre accedemos al metodo o propiedad de la propiedad de un objeto
 ---
 ### 5. Como se le llama al contenido dentro de un array? pista: el array puede estar vacio o puede tener uno o mas de ello.
-- indice? 
+- Elemento
 ---
 ### 6. Que es el indice/index para un array?
 - El indice es el lugar donde esta posicionado el elemento, un array empieza en el indice 0
@@ -68,3 +68,7 @@
 ###  14. Dado el siguiente objeto de javascript, escriba la posible manera de acceder al valor de la key “developer”:
 - objeto[key] 
 # ?
+
+# Datos
+para guardar mucha info de muchas cosas conviene array
+para guardar mucha info de una misma cosa conviene obj

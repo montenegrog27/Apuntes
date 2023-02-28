@@ -18,10 +18,17 @@
 .concat(): Este método combina dos o más arrays en uno solo.
 
 .splice(): Este método cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos.
+    - El primer indice es de donde va a arrancar a eliminar, incluyendo el indice que se le pasa
+    - El segundo parametro es cuantos elementos va a eliminar.
+    - El tercer parametro en adelante es lo que se va a agregar
+    - Ej: p = []
 
 .slice(): Este método devuelve una porción del array, es decir, un nuevo array que contiene los elementos desde el índice inicial hasta el índice final (no incluido).
+    - El primer indice que se le pasa es donde empieza el nuevo arreglo 
+    - El segundo indice es hasta donde va a llegar el arreglo, pero no lo incluye 
 
 .split(): Este método divide una cadena de texto en un array de subcadenas. Puedes especificar un separador que se utilizará para dividir la cadena de entrada en subcadenas.
+    -
 
 .map(): Este método crea un nuevo array con los resultados de llamar a una función para cada elemento del array original.
 
