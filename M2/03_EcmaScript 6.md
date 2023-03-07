@@ -47,9 +47,12 @@ function f() {
 }
 ```
 ### Notas viendo la lecture:
-*Todo es const... hasta que necesite lo contrario*
+    *Todo es const... hasta que necesite lo contrario*
 
-**var no se usa mas!!**
+    *var no se usa mas!!*
+
+---
+---
 
 Más Info: [let statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), [const statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const)
 
@@ -76,11 +79,61 @@ var bob = {
   _friends: [],
   printFriends() {
     this._friends.forEach(f =>
-      console.log(this._name + " knows " + f));
+      console.log(this._name + " knows " + f));// this es bob por la arrow f
   }
 }
 ```
-Notas viendo la lecture:
+## IMPORTANTE:
+Las arrow function toman el this del lugar donde fueron definidas, es decir hacen un auto bind.
+Con las arrow function le decimos adios al metodo Bind!!
+
+## Notas viendo la lecture:
+```javascript
+function sumar (a, b) {
+    const resultado = a + b;
+    return resultado
+}
+```
+#### Esto se va a traducir a esto en arrow function: 
+```javascript
+const sumar = (a, b) => {
+    const resultado = a + b;
+    return resultado
+}
+```
+#### Aun mas resumido:
+Si la arrow funcion tiene una sola linea , y en esa unica linea retorna algo, podemos obviar el return y escribirlo asi
+```javascript
+const sumar = (a, b) => a + b;
+```
+## Tambien nos sirve para expresiones:
+```javascript
+const arr = [1,2,3,4,5,6,7,8,9]
+const pares = arr.filter(function (num){
+    //la callback del metodo filter retorna una condicion
+    return num%2 === 0;
+})
+```
+Vamos a escribir asi:
+```javascript
+const arr = [1,2,3,4,5,6,7,8,9]
+const pares = arr.filter((num) => {
+    return num%2 === 0
+    };
+)
+```
+Y como tengo una sola linea: Podemos obviar las {} y eliminamos el 'return'
+```javascript
+const arr = [1,2,3,4,5,6,7,8,9]
+const pares = arr.filter((num) =>  num%2 === 0)
+
+```
+Y que es lo mejor???? *Lo que entiendas hasta hoy!!!*
+
+### En conclusion:
+    Resume el codigo
+    Elimina el Bind
+---
 
 
 Más información: [MDN Arrow Functions](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)
@@ -114,6 +167,43 @@ class SkinnedMesh extends THREE.Mesh {
   }
 }
 ```
+
+
+
+## Notas de la lecture:
+Lo importante es aprender a usar el constructor de clase
+
+```javascript
+class Persona {
+  constructor(nombre, apellido) {
+    this.nombre = nombre;
+    this.apellido = apellido;
+  }
+  getNombre(){
+    this.nombre;// Esta funcion lo que hace es retornar el nombre
+  }
+}
+ const persona1 = new Persona('Jorge', 'Vega');
+ console.log(persona1)// --> Persona{ nombre: 'Jorge, apellido: 'Vega'}
+ console.log(persona1.getNombre());//---->> 'Jorge'
+```
+*Lo que hacemos es crear una clase con el constructor y asignarle una funcion que retorne el nombre, consologueamos y nos devuelve el objeto y la invocacion de la funcion*
+
+## Ahora vamos a hacer la herencia de esa clase Persona
+Vamos a crear la clase 'Empleado' y un empleado antes de ser empleado es Persona
+```javascript
+class Empleado extends Persona {
+  constructor(nombre,apellido,cargo){// Se le pasan parametros para crear un Empleado
+    super(nombre, apellido) // super se usa para llamar al constructor de Persona.
+    this.cargo = cargo; // y aca agregamos el cargo del Empleado, que ya tiene nom y apellido
+  }
+}
+const empleado1 = new Empleado('Pedro', 'Casillas','Jefe de ventas');
+console.log(empleado1) //--> Empleado{nombre:'Pedro, apellido:'Casillas',cargo:'Jefe de ventas'}
+console.log(empleado1.getNombre())//--->> Pedro
+```
+*La herencia tambien hereda los metodos que creamos en la clase padre.En este caso getNombre*
+
 
 Más info: [MDN Classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes)
 
@@ -195,6 +285,84 @@ a === undefined;
 var [a = 1] = [];
 a === 1;
 ```
+## Notas de la lecture:
+Vamos a poder extraer informacion de arreglos y objetos, y guardarlos en variables para utilizarlos.
+Ejemplo:
+
+### Destructuracion con objetos:
+#### Importante: Necesitamos conocer si o si el nombre de las propiedades a extraer
+```javascript
+const Persona{
+  nombre = 'German',
+  apellido = 'Montenegro',
+  direccion = 'Santa fe 1555',
+  cp = '3400',
+  mail = 'german123@gmail.com',
+}
+// Lo que quiero es extraer solo unas propiedades de ese objeto Persona:
+// se crea una variable que contenga solo esas propiedades:
+const {nombre, apellido, mail} = objeto1
+
+//Esto devuelve una variable (objeto1) con un objeto:
+console.log(objeto1)//->{nombre ='German', apellido ='Montenegro', mail ='german123@gmail.com'}
+
+```
+Tambien si hacemos una destructuracion con una funcion seria asi:
+```javascript
+const Persona{
+  nombre = 'German',
+  apellido = 'Montenegro',
+  direccion = 'Santa fe 1555',
+  cp = '3400',
+  mail = 'german123@gmail.com',
+}
+function cualquiera(obj){
+  const {nombre, apellido, mail} = obj
+  return{
+    nombre,
+    apellido,
+    mail,
+  };
+}
+console.log(cualquiera(obj))//-->> //->{nombre ='German', apellido ='Montenegro', mail ='german123@gmail.com'}
+```
+La destructuracion podemos hacerla directamente al llamar al objeto, pasando como parametro las propiedades que queremos que extraiga del objeto principal
+Ejemplo:
+```javascript
+function cualquiera({nombre, apellido, mail}){// aca le pasamos por parametro las propiedades
+  return{// y retoranamos directamente 
+    nombre,
+    apellido,
+    mail,
+  };
+}
+//esta funcion toma como referencia el parametro que se le pasa al invocar a la funcion
+//                      ||    
+//                      \/   
+console.log(cualquiera(obj))//-->> //->{nombre ='German', apellido ='Montenegro', mail ='german123@gmail.com'}
+```
+## Con un array es algo similar:
+### Importante: Lo vamos a usar generalmente para Array pequeños, donde tengamos certeza de lo que hay dentro
+*Ejemplo:*
+
+```javascript
+const arr = ['facundo', 'Leandro', 'Liliana']
+//             /          /        /
+//            /          /        /
+const [persona1, persona2, persona3] = arr;
+```
+*Otro ejemplo:*
+```javascript
+const arr = ['Valor X', () => {}]// un valor x y una funcion
+//uso destructuracion para guardarme los dos elementos en dos variables distintas
+const [valor, funcion] = arr;
+// Ahora si hago console log vemos que podemos llamarlas por separado
+console.log(valor)//-->> Valor X
+console.log(funcion)//-->> ()=>{}
+//Esto se usa para no estar llamando a los elementos asi:
+arr[0]
+arr[1]
+```
 
 Más Info: [MDN Destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
@@ -226,6 +394,65 @@ function f(x, y, z) {
 // Pass each elem of array as argument
 f(...[1,2,3]) == 6
 ```
+
+## Notas de la lecture:
+### Spread:
+Sirve para llamar a un array existente, o para concatenarlo con mas elementos o mas arrays
+se lo llama con 3 puntos (...)
+Ejemplo 1: llamando a un array ya existente
+```javascript
+const arr1 = [1,2,3];
+const nuevoArray = [...arr1]// los tres puntitos se leen 'los elementos de:'
+// y si consologueo:
+console.log(nuevoArray)//-->> [1,2,3]
+```
+Tambien puedo añadir elementos a ese arreglo
+Ejemplo:
+```javascript
+const arr1 = [1,2,3];
+const arrAñadido = [...arr1,4,5,6];
+console.log(arrAñadido)//-->>[1,2,3,4,5,6]
+// Otro ejemplo
+const arrAñadido2 = [0,1,2,...arr1,7,8,9];
+console.log(arrAñadido2)//-->>[0,1,2,1,2,3,7,8,9];
+```
+
+Tambien puedo concatenar Arreglos
+Ejemplo:
+```javascript
+const arr1 = [1,2,3];
+const arr2 = [4,5,6];
+const arrConcatenado = [...arr1,...arr2];
+console.log(arrConcatenado)//-->>[1,2,3,4,5,6]
+```
+
+## Tambien funciona con Objetos:
+Ejemplo:
+```javascript
+const persona = {// tengo un objeto de persona
+  nombre: 'German',
+  edad: 29,
+}
+const personaConApellido ={//y quiero hacer una copia con las mismas prop y agregarle apellido 
+  ...persona
+  apellido:'Montenegro',
+}
+// Consologueamos
+console.log(personaConApellido)//-->{nombre: 'German',edad: 29, apellido:'Montenego'}
+```
+
+### Importante: Se puede modificar una propiedad que se extrajo de person
+Ejemplo:
+```javascript
+const personaConApellido ={
+  ...persona
+  apellido:'Montenegro',
+  edad: 28, // se modifica la propiedad
+}
+console.log(personaConApellido)//-->{nombre: 'German',edad: 23, apellido:'Montenego'}
+```
+*Si tiene metodos tambien los trae*
+
 
 Más Info: [Default parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters), [Rest parameters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters), [Spread Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator)
 
