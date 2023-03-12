@@ -14,11 +14,15 @@ HTTP Es un protocolo de comunicacion del cliente con el servidor
 ![img](/img%20y%20screenshot/Ajax%20img2.jpeg)
 ### *Importante: El servidor siempre va a devolver una respuesta, aun cuando no pueda hacer lo que le estamos pidiendo*
 
-### Como usar AJAX
-Primero en nuestro html en el head
+---
+
+## Como usar AJAX
+Primero en nuestro html en el head insertamos el script de la pag de jquery
 ```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 ```
+
+---
 
 ## Como seleccionar un id para trabajar con jquery:
 por ejemplo, en HTML tenemos un div con un id = 'amigos'
@@ -34,23 +38,26 @@ $('#amigos').click()
 ## Metodo .val():
 El metodo .val() lo que hace es traer el valor de lo que le estamos aplicando el metodo
 
-## Metodo Get: Peticion de informacion
+---
+
+
+# Metodo Get: Peticion de informacion
 ### Como crear una solicitud GET:
 
 1_ Dentro de un script en HTML en el body
-   escribimos 
+   escribimos:
    ```HTML
    $
    ```  
    --->> Este signo de pesos representa a la libreria jQuery
 
 
-2_ primero se le pasa un parametro que es la url del servidor que le quiero hacer la request
+2_ primero se le pasa un parametro que es la url del servidor que le quiero hacer la request:
 
 ```javascript
    $.get("https://jsonplaceholder.typicode.com/users")
 ```
-3_ El segundo parametro que le enviamos a get es una funcion callback(la respuesta)
+3_ El segundo parametro que le enviamos a get es una funcion callback(la respuesta):
 
    ```javascript
    $.get("https://jsonplaceholder.typicode.com/users"(response)=>{
@@ -65,15 +72,11 @@ El metodo .val() lo que hace es traer el valor de lo que le estamos aplicando el
    })
    ```
 
+---
 
 
-## Metodo Post: Para guardar informacion
-### Como crear una solicitud POST:
-
-
-
-
-## Delete: Eliminar una informacion
+# Metodo Delete: Eliminar una informacion
+Para eliminar una informacion vamos a uar la siguiente sintaxis:
 ```javascript
 $.ajax({
     url: ""// Aca va la url
@@ -81,6 +84,7 @@ $.ajax({
     success: ()=> {}// Esta es la callback de que hacemos cuando termina
 })
 ```
+*Importante*: Todos los metodos (GET, DELETE, PUT y POST) usan la misma sintaxis, solo que al metodo GET se puede usar la sintaxis abreviada (Solo a ese metodo)
 
-## Put : Para que modifique
+
 
