@@ -138,10 +138,80 @@ Webpack arma un unico archivo js donde estan todos esos modulos (hace un bundle)
   
 
 
-![Engelbart|100](/img%20y%20screenshot/05_Bundlers.jpg)
+![img](/img%20y%20screenshot/05_Bundlers.jpg)
 
 ---
 
-## Como instalar WEBPACK en nuestro proyecto
+## Como usar WEBPACK en nuestro proyecto
 
 ![img](/img%20y%20screenshot/05_Bundlers(2).jpg)
+
+## 1_Instalar webpack webpack-cli
+```javascript
+//      En consola
+npm install webpack webpack-cli
+```
+
+## 2_ Ir a package.json y escribir la propiedad build:
+
+Agregar al objeto 'scripts' que está dentro del package.json las propiedades 'start' y 'build':
+
+```javascript
+//      En package.json
+"scripts": {
+    "start": "node server.js"; // (parece que no es necesario) 
+    "build": "webpack" // Este si
+}
+``` 
+
+
+## 3_ Crear archivo webpack.config.js en nuestro proyecto:
+
+Crear un archivo 'webpack.config.js', en este arhivo vamos a insertar un objeto (module.exports) que contiene 2 propiedades: 'entry' y 'output' con los siguientes valores:
+
+```javascript
+//      En webpack.conig.js (que creamos)
+module.exports = {
+    entry: './index.js',  // en entrada vamos a indicar el archivo que requiere de 
+                          //todos los modulos, pero no exporta nada (index.js)
+
+    output:{              //En output es el modulo bundler donde va a guardar el archivo final
+        path: __dirname +'./webpack' // Esto nos va a crear una carpeta 'webpack',__dirname
+                                     //usar si o si
+        filename: 'bundle.js' // El nombre que le vamos a poner al archivo resultante
+    }
+}
+```
+*EL__dirname es el nombre de la carpeta que yo tengo ahora, por eso se usa __dirname + el nombre que nosotros querramos darle*
+
+## 4_Hacer que nuestro navegador encuentre nuestro bundler.
+Donde esta el **bundler**  ??
+
+### En consola hacemos correr el webpack:
+```
+run build
+``` 
+*Esto crea el output que le dijimos, la carpeta webpack con el archivo adentro 'budnle.js'*  
+
+**-Este archivo 'bundle.js' tiene todo lo que creamos en todos nuestros modulos, ('index.js', 'funciones.js', 'variables.js', etc etc etc)**  
+
+Ahora tenemos todo en un solo archivo, y llamamos ese archivo desde nuestro HTML con un solo script  
+Ej:
+```html
+<!--     En nuestro HTML (index.html)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> -->
+    <script src = "./webpack/bundle.js"></script>
+ <!-- 
+</head>
+<body>
+</body>
+</html> -->
+```
+
